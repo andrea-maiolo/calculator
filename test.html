@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="/home/andrea/odin_project/rockPaperScissor/style.css">
+	<link rel="stylesheet" href ="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Girassol&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div id="title">
+		<h1>Make a choice!</h1>
+	</div>
+	<div id="selection">
+		<button id='rock'>Rock</button>
+		<button id='paper'>Paper</button>
+		<button id='scissor'>Scissor</button>
+	</div>
+	<div id="results">
+		<p id="player"></p>
+		<p id="computer"></p>
+	</div>
+	<div id = "gameover">
+
+	</div>
+</body>
+<script src=main.js>
+
+</script>
+
+</html>
+
+
+<!-- MAIN JS
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', playerPlay);
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', playerPlay);
+const scissor = document.querySelector('#scissor');
+scissor.addEventListener('click', playerPlay);
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', start));
+
+const gameover = document.querySelector('#gameover');
+const results = document.querySelector('#results');
+const para = document.createElement('p');
+const over = document.createElement('button');
+over.style.display = 'none';
+over.setAttribute('id', 'overButton')
+
+var playerSelection
+function playerPlay(e) {
+	playerSelection = this.id;
+}
+
+function computerPlay() {
+	function random() {
+		return Math.floor(Math.random() * 3)
+	}
+	if (random() == 0) {
+		return "rock"
+	} else if (random() == 1) {
+		return "paper"
+	} else {
+		return "scissor"
+	}
+}
+
+function game1(p, c) {
+	if (p === "paper" && c === "rock") {
+		userScore++
+		return "You won! Paper beats rock"
+	} else if (p === "paper" && c === "scissor") {
+		computerScore++
+		return "You lose! Scissor beats paper"
+	} else if (p === "rock" && c === "scissor") {
+		userScore++
+		return "You won! Rock beats scissor"
+	} else if (p === "rock" && c === "paper") {
+		computerScore++
+		return "You lose! Paper beats rock"
+	} else if (p === "scissor" && c === "rock") {
+		computerScore++
+		return "You lose! Rock beats scissor"
+	} else if (p === "scissor" && c === "paper") {
+		userScore++
+		return "You won! Scissor beats paper"
+	} else if (p === c) {
+		return "That is even"
+	}
+}
+
+let userScore = 0;
+const player = document.querySelector('#player');
+player.textContent = 'Player: ' + userScore;
+let computerScore = 0;
+const computer = document.querySelector('#computer');
+computer.textContent = 'Computer: ' + computerScore;
+
+function checker(a, b) {
+	if (a == 5) {
+		over.innerHTML = 'You won, congratulations!';
+		over.style.display = 'block';
+		gameover.appendChild(over);
+		return true
+	} else if (b == 5) {
+		over.innerHTML = 'The computer won, try one more time';
+		over.style.display = 'block';
+		gameover.appendChild(over);
+		return true
+	} else {
+		return false
+	}
+}
+
+function reset() {
+	userScore = 0;
+	player.textContent = 'Player: ' + userScore;
+	computerScore = 0;
+	computer.textContent = 'Player: ' + userScore;
+	results.removeChild(para);
+	gameover.removeChild(over);
+	over.style.display = 'none';
+	rock.addEventListener('click', playerPlay);
+	paper.addEventListener('click', playerPlay);
+	scissor.addEventListener('click', playerPlay);
+	buttons.forEach(button => button.addEventListener('click', start));
+}
+
+function start() {
+	let begin = game1(playerSelection, computerPlay());
+	para.textContent = begin;
+	results.appendChild(para);
+	gameover.appendChild(over);
+	computer.textContent = 'Computer: ' + computerScore;
+	player.textContent = 'Player: ' + userScore;
+	if (checker(userScore, computerScore) == true) {
+		buttons.forEach(button => button.removeEventListener('click', start));
+		rock.removeEventListener('click', playerPlay);
+		paper.removeEventListener('click', playerPlay);
+		scissor.removeEventListener('click', playerPlay);
+		over.addEventListener('click', reset);
+	} else {
+		//do something with this??
+		console.log('keep playing')
+	}
+} -->
+
+
+
+
+<!--STYLE-->
+<!-- body{
+    background-color: rgb(156, 174, 181);
+    font-family: 'Girassol', cursive, 'Franklin Gothic Medium';
+}
+h1{
+    font-size: 35px;
+    text-align: center;
+    color: black;
+}
+p{
+    font-size: 20px;
+    text-align: center;
+    color: black;
+}
+#rock{
+    background-color: rgb(59,100,146);
+    border: none;
+    color:black;
+    padding: 41px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-family: 'Girassol', cursive, 'Franklin Gothic Medium';
+}
+#scissor{
+    background-color: rgb(59,100,146);
+    border: none;
+    color: black;
+    padding: 40px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-family: 'Girassol', cursive, 'Franklin Gothic Medium';
+}
+#paper{
+    background-color: rgb(59,100,146);
+    border: 20px;
+    color: black;
+    padding: 40px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-family: 'Girassol', cursive, 'Franklin Gothic Medium';
+
+}
+#rock:hover{
+	background-image: url(https://cdn.shopify.com/s/files/1/1661/5331/products/rocks3_800x.jpg?v=1527199350);
+}
+#paper:hover{
+    background-image: url(http://4.bp.blogspot.com/-NR2KgqwqUBQ/VFuZHB9JsfI/AAAAAAAAAes/Dr-pE1fCJAA/s1600/Paper_Texture_by_Spiteful_Pie_Stock.jpg);
+}
+#scissor:hover{
+    background-image: url(http://4.bp.blogspot.com/_abe0p86QmVA/RpeFTdFh1TI/AAAAAAAAAUU/D6cClmJV3z0/s320/scissors.jpg);
+}
+#player{
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+#computer{
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+#selection{
+    text-align: center;
+}
+#results{
+    text-align: center;
+}
+#gameover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#overButton {
+    background-color: rgb(59,100,146);
+    font-family: 'Girassol', cursive, 'Franklin Gothic Medium';
+    font-size: larger;
+    color: black;
+} -->

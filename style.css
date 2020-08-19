@@ -1,0 +1,9 @@
+#calc{
+    display: grid;
+}
+#screen{
+    display: block;
+}
+.buttons{
+    background-color: rgb(193, 101, 20);
+}
