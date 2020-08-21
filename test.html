@@ -7,22 +7,42 @@
 	<link href="https://fonts.googleapis.com/css2?family=Girassol&display=swap" rel="stylesheet">
 </head>
 
-<body>
-	<div id="title">
-		<h1>Make a choice!</h1>
-	</div>
-	<div id="selection">
-		<button id='rock'>Rock</button>
-		<button id='paper'>Paper</button>
-		<button id='scissor'>Scissor</button>
-	</div>
-	<div id="results">
-		<p id="player"></p>
-		<p id="computer"></p>
-	</div>
-	<div id = "gameover">
+    <body>
+		     
 
-	</div>
+Create the functions that populate the display when you click the number buttons… 
+you should be storing the ‘display value’ in a variable somewhere for use in the next step.
+        <div>
+        <form>
+    <div>
+        <input id="screen" class='window' type='button' name='display' value='57374577'>
+    </div>
+    <div>
+        <input type='button' class="buttons" id="one" value='1' readonly>
+        <input type='button' class="buttons" id="two" value='2' readonly>
+        <input type='button' class="buttons" id="three" value='3' readonly>
+        <input type='button' class="buttons" id="subtract" value='-' readonly>
+        </div>
+        <div>
+        <input type='button' class="buttons" id="four" value='4' readonly>
+        <input type='button' class="buttons" id="five" value='5' readonly>
+        <input type='button' class="buttons" id="six" value='6' readonly>
+        <input type='button' class="buttons" id="multiply" value='*' readonly>
+        </div>
+        <div>
+        <input type='button' class="buttons" id="seven" value='7' readonly>
+        <input type='button' class="buttons" id="eight" value='8' readonly>
+        <input type='button' class="buttons" id="nine" value='9' readonly>
+        <input type='button' class="buttons" id="divide" value='/' readonly>
+        </div>
+        <div>
+        <input type='button' class="buttons" id="clear" value='CL' readonly>
+        <input type='button' class="buttons" id="zero" value='0' readonly>
+        <input type='button' class="buttons" id="add" value='+' readonly>
+        <input type='button' class="buttons" id="answer" value='=' readonly>
+		</div>
+        </form>
+        </div>
 </body>
 <script>
 	function add(n, m) {
