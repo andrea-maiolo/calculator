@@ -29,3 +29,13 @@ function operate(n,operator,m){
 		return divide(n,m)
 }
 }
+
+const screen = document.querySelector('#screen');
+const nums = document.querySelectorAll('.buttons');
+     let calcButton;
+	for (var i = 0; i < nums.length; i++) {
+	    calcButton = nums[i];
+	    calcButton.addEventListener('click', function() {
+            screen.value = this.value;
+		});
+	}
