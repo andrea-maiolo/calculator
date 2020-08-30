@@ -1,12 +1,3 @@
-//to fix:
-//oparetor can be changed after n adn m are selected
-//allow number bigger than one digit
-//allow only few digits for decimal when dividing
-//CL is NOT an operator make it clear everithing
-//clean console once finished
-//dividing by zero needs to be fixed
-
-
 
 
 //this is what you see on the screen
@@ -29,48 +20,50 @@ for (var i = 0; i < nums.length; i++) {
 
 
 
-
-
 //this function runs when buttos are clicked
 function populate(e) {
 	//if you click NaN add operator or run operation
-	if (isNaN(parseInt(this.value)) == true) {
+	if (isNaN(parseInt(this.value))) {
 		//if operator equal to =
 		if (this.value === '=') {
 			//run operation
-			return operation(firstNumber, operator, secondNumber)
+			operation(firstNumber, operator, secondNumber)
 		} else {
-			//if is an operator store the value
-			operator = (this.value);
-			console.log(operator)
-			//show operator??
 			//stop adding numbers to screen and n
-			screen.value = '';
-			return
+			screen.value = this.value;
+			//if is an operator store the value
+			operator = this.value;
 		}
-		//if you click a number add it to the screen as text.
+	//if you click a number add it to the screen as text.
 	} else {
 		//if text on screen is to long stop it
+		//here the function stops and get back to the beggining chekc for bugs
 		if (screen.value.length == 10) {
-			return console.log('too many numbers')
+			console.log('too many numbers');
+			return
 			//otherways keep adding
 		} else {
-			//!!!!!!!rethink this because it causes problems!!!!!!!!!!!
-			if (firstNumber === undefined && operator === undefined) {
-				//if n and oparator are undefined create and add n
-				screen.value = this.value;
+			if (firstNumber !== undefined && operator !== undefined) {
+				//if n and oparator are not undefined create and add m
+				screen.value ='';
+				screen.value += this.value;
 				//this will be used later
-				firstNumber = parseInt(screen.value);
-				console.log(firstNumber);
-			} else {
-				//add value to m
-				screen.value = this.value;
 				secondNumber = parseInt(screen.value);
-				console.log(secondNumber)
+				console.log(secondNumber);
+			} else {
+				//add value to n
+				screen.value += this.value;
+				firstNumber = parseInt(screen.value);
+				console.log(firstNumber)
 			}
 		}
 	}
 }
+
+
+
+
+
 
 
 
@@ -107,6 +100,7 @@ function add(n, m) {
 	//and operator too
 	firstNumber = undefined;
 	operator = undefined;
+	secondNumber= undefined;
 	return result;
 }
 
@@ -116,6 +110,7 @@ function subtract(n, m) {
 	console.log(result);
 	firstNumber = undefined;
 	operator = undefined;
+	secondNumber= undefined;
 	return result;
 }
 
@@ -125,6 +120,7 @@ function multiply(n, m) {
 	console.log(result);
 	firstNumber = undefined;
 	operator = undefined;
+	secondNumber= undefined;
 	return result;
 }
 
@@ -138,6 +134,7 @@ function divide(n, m) {
 		console.log(result);
 		firstNumber = undefined;
 		operator = undefined;
+		secondNumber= undefined;
 		return result;
 	}
 }
