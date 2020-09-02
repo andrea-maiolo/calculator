@@ -1,13 +1,10 @@
-
-
-//this is what you see on the screen
-const screen = document.querySelector('#screen');
+let temporary = '';
 //this will be the first number n
-let firstNumber;
+let firstImput;
 //this is the operator
 let operator;
 //this is m the second numver
-let secondNumber;
+let secondImput;
 //this is the final result
 let result;
 //this create a function when nuttons are clikced
@@ -17,111 +14,83 @@ for (var i = 0; i < nums.length; i++) {
 	calcButton = nums[i];
 	calcButton.addEventListener('click', populate)
 }
-
-
-
-//this function runs when buttos are clicked
+//this function runs when buttons are clicked
+//and store the button value in a temporary variable
 function populate(e) {
-	//if you click NaN add operator or run operation
-	if (isNaN(parseInt(this.value))) {
-		//if operator equal to =
-		if (this.value === '=') {
-			//run operation
-			operation(firstNumber, operator, secondNumber)
-		} else {
-			//stop adding numbers to screen and n
-			screen.value = this.value;
-			//if is an operator store the value
-			operator = this.value;
-		}
-	//if you click a number add it to the screen as text.
+	temporary = this.value;
+	return evaluation(temporary);
+}
+//this function evaluates the temporary variable
+function evaluation() {
+	if (isNaN(parseInt(temporary))) {
+		//if temporary is not a number then is an operator
+		//so call a function for that 
+		return operatorCreation(temporary);
 	} else {
-		//if text on screen is to long stop it
-		//here the function stops and get back to the beggining chekc for bugs
-		if (screen.value.length == 10) {
-			console.log('too many numbers');
-			return
-			//otherways keep adding
+		//if temporary is a number then
+		return numberCreation(temporary);
+	}
+}
+//operation function
+//o is for the operator
+function operatorCreation(o) {
+	//if the user clicked on a number
+	if (firstImput !== undefined) {
+		if (o === "CL") {
+			return clean();
+		} else if (o === "=") {
+			saveMultipleDigits = '';
+			return operations(firstImput, operator, secondImput);
 		} else {
-			if (firstNumber !== undefined && operator !== undefined) {
-				//if n and oparator are not undefined create and add m
-				screen.value ='';
-				screen.value += this.value;
-				//this will be used later
-				secondNumber = parseInt(screen.value);
-				console.log(secondNumber);
-			} else {
-				//add value to n
-				screen.value += this.value;
-				firstNumber = parseInt(screen.value);
-				console.log(firstNumber)
-			}
+			operator = o;
+			saveMultipleDigits = '';
 		}
+		//if the first thing that the user click is an operator don't do anything
+	} else {
+		return
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-//check the operator and run proper math function
-//a is the firstNumber, o is operator and c id secondNumber
-function operation(a, o, c) {
-	if (o == '+') {
+function operations(a, o, c) {
+	if (o === '+') {
 		return add(a, c);
-	} else if (o == "-") {
+	} else if (o === "-") {
 		return subtract(a, c);
-	} else if (o == "*") {
+	} else if (o === "*") {
 		return multiply(a, c);
-	} else if (o == "/") {
+	} else if (o === "/") {
 		return divide(a, c)
 	}
 }
 
-
-
-
-
-
-
-//the screen must be cleaned befor diplaying the result
 function add(n, m) {
 	result = n + m;
-	screen.value = result;
 	console.log(result);
 	//after this n shuld be cleaned
 	//and operator too
-	firstNumber = undefined;
+	firstImput = undefined;
 	operator = undefined;
-	secondNumber= undefined;
-	return result;
+	secondImput = undefined;
 }
 
 function subtract(n, m) {
 	result = n - m;
 	screen.value = result;
 	console.log(result);
-	firstNumber = undefined;
+	//cleanings
+	firstImput = undefined;
 	operator = undefined;
-	secondNumber= undefined;
-	return result;
+	secondImput = undefined;
 }
 
 function multiply(n, m) {
 	result = n * m;
 	screen.value = result;
 	console.log(result);
-	firstNumber = undefined;
+	//cleanings
+	firstImput = undefined;
 	operator = undefined;
-	secondNumber= undefined;
-	return result;
+	secondImput = undefined;
 }
 
 function divide(n, m) {
@@ -132,9 +101,34 @@ function divide(n, m) {
 		result = n / m;
 		screen.value = result;
 		console.log(result);
-		firstNumber = undefined;
+		//cleanings
+		firstImput = undefined;
 		operator = undefined;
-		secondNumber= undefined;
-		return result;
+		secondImput = undefined;
+	}
+}
+//cleaning function
+function clean() {
+	firstImput = undefined;
+	secondImput = undefined;
+	result = undefined;
+	// screen.value= '';
+	operator = undefined;
+}
+var saveMultipleDigits = '';
+//this function fill up the numbers
+function numberCreation(num) {
+	//save the temporary variable in a permanent number,
+	//that will b used later
+	//i need to save 2 numbers to make the operations work
+	//the first number is called firstImput
+	//the second number is called secondImput
+	saveMultipleDigits += num;
+	//if it's the first number that i am inputting in then save it as first number
+	//otherwise save it as the second imput
+	if (operator !== undefined) {
+		secondImput = parseInt(saveMultipleDigits);
+	} else {
+		firstImput = parseInt(saveMultipleDigits);
 	}
 }
