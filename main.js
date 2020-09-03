@@ -1,18 +1,23 @@
 //to fix:
+
 //create a button so the result can be used again 
 //if you want you can use the result as first number, just don't clean after operations
-//and edit the firstImput to be equal to result
+//and edit the firstInput to be equal to result
 //dividing by zero needs to be fixed
 //allow only few digits for decimal when dividing
 //clean console once finished
+// EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
+// EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
+// EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
+// EXTRA CREDIT: Add keyboard support!
 
 let temporary = '';
 //this will be the first number n
-let firstImput;
+let firstInput;
 //this is the operator
 let operator;
 //this is m the second numver
-let secondImput;
+let secondInput;
 //this is the final result
 let result;
 //this create a function when nuttons are clikced
@@ -43,12 +48,12 @@ function evaluation() {
 //o is for the operator
 function operatorCreation(o) {
 	//if the user clicked on a number
-	if (firstImput !== undefined) {
+	if (firstInput !== undefined) {
 		if (o === "CL") {
 			return clean();
 		} else if (o === "=") {
 			saveMultipleDigits = '';
-			return operations(firstImput, operator, secondImput);
+			return operations(firstInput, operator, secondInput);
 		} else {
 			operator = o;
 			saveMultipleDigits = '';
@@ -76,9 +81,9 @@ function add(n, m) {
 	console.log(result);
 	//after this n shuld be cleaned
 	//and operator too
-	firstImput = undefined;
+	firstInput = undefined;
 	operator = undefined;
-	secondImput = undefined;
+	secondInput = undefined;
 }
 
 function subtract(n, m) {
@@ -86,9 +91,9 @@ function subtract(n, m) {
 	screen.value = result;
 	console.log(result);
 	//cleanings
-	firstImput = undefined;
+	firstInput = undefined;
 	operator = undefined;
-	secondImput = undefined;
+	secondInput = undefined;
 }
 
 function multiply(n, m) {
@@ -96,9 +101,9 @@ function multiply(n, m) {
 	screen.value = result;
 	console.log(result);
 	//cleanings
-	firstImput = undefined;
+	firstInput = undefined;
 	operator = undefined;
-	secondImput = undefined;
+	secondInput = undefined;
 }
 
 function divide(n, m) {
@@ -110,15 +115,15 @@ function divide(n, m) {
 		screen.value = result;
 		console.log(result);
 		//cleanings
-		firstImput = undefined;
+		firstInput = undefined;
 		operator = undefined;
-		secondImput = undefined;
+		secondInput = undefined;
 	}
 }
 //cleaning function
 function clean() {
-	firstImput = undefined;
-	secondImput = undefined;
+	firstInput = undefined;
+	secondInput = undefined;
 	result = undefined;
 	// screen.value= '';
 	operator = undefined;
@@ -129,14 +134,14 @@ function numberCreation(num) {
 	//save the temporary variable in a permanent number,
 	//that will b used later
 	//i need to save 2 numbers to make the operations work
-	//the first number is called firstImput
-	//the second number is called secondImput
+	//the first number is called firstInput
+	//the second number is called secondInput
 	saveMultipleDigits += num;
 	//if it's the first number that i am inputting in then save it as first number
 	//otherwise save it as the second imput
 	if (operator !== undefined) {
-		secondImput = parseInt(saveMultipleDigits);
+		secondInput = parseInt(saveMultipleDigits);
 	} else {
-		firstImput = parseInt(saveMultipleDigits);
+		firstInput = parseInt(saveMultipleDigits);
 	}
 }

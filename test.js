@@ -1,12 +1,16 @@
+//TEST TEST TEST TEST TEST
+
 let temporary = '';
 //this will be the first number n
-let firstImput;
+let firstInput;
 //this is the operator
 let operator;
 //this is m the second numver
-let secondImput;
+let secondInput;
 //this is the final result
 let result;
+//this is for the screen
+const screen = document.querySelector('#screen');
 //this create a function when nuttons are clikced
 const nums = document.querySelectorAll('.buttons');
 let calcButton;
@@ -35,12 +39,14 @@ function evaluation() {
 //o is for the operator
 function operatorCreation(o) {
 	//if the user clicked on a number
-	if (firstImput !== undefined) {
+	if (firstInput !== undefined) {
 		if (o === "CL") {
 			return clean();
 		} else if (o === "=") {
 			saveMultipleDigits = '';
-			return operations(firstImput, operator, secondImput);
+			return operations(firstInput, operator, secondInput);
+		} else if(o === "answer") {
+			return useAnswer();
 		} else {
 			operator = o;
 			saveMultipleDigits = '';
@@ -48,6 +54,26 @@ function operatorCreation(o) {
 		//if the first thing that the user click is an operator don't do anything
 	} else {
 		return
+	}
+}
+
+var saveMultipleDigits = '';
+//this function fill up the numbers
+function numberCreation(num) {
+	//save the temporary variable in a permanent number,
+	//that will b used later
+	//i need to save 2 numbers to make the operations work
+	//the first number is called firstInput
+	//the second number is called secondInput
+	saveMultipleDigits += num;
+	//if it's the first number that i am inputting in then save it as first number
+	//otherwise save it as the second imput
+	if (operator !== undefined) {
+		secondInput = parseInt(saveMultipleDigits);
+		screen.value= secondInput ;
+	} else {
+		firstInput = parseInt(saveMultipleDigits);
+		screen.value= firstInput ;
 	}
 }
 
@@ -66,11 +92,12 @@ function operations(a, o, c) {
 function add(n, m) {
 	result = n + m;
 	console.log(result);
+	screen.value= result; 
 	//after this n shuld be cleaned
 	//and operator too
-	firstImput = undefined;
+	firstInput = undefined;
 	operator = undefined;
-	secondImput = undefined;
+	secondInput = undefined;
 }
 
 function subtract(n, m) {
@@ -78,9 +105,9 @@ function subtract(n, m) {
 	screen.value = result;
 	console.log(result);
 	//cleanings
-	firstImput = undefined;
+	firstInput = undefined;
 	operator = undefined;
-	secondImput = undefined;
+	secondInput = undefined;
 }
 
 function multiply(n, m) {
@@ -88,9 +115,9 @@ function multiply(n, m) {
 	screen.value = result;
 	console.log(result);
 	//cleanings
-	firstImput = undefined;
+	firstInput = undefined;
 	operator = undefined;
-	secondImput = undefined;
+	secondInput = undefined;
 }
 
 function divide(n, m) {
@@ -102,33 +129,21 @@ function divide(n, m) {
 		screen.value = result;
 		console.log(result);
 		//cleanings
-		firstImput = undefined;
+		firstInput = undefined;
 		operator = undefined;
-		secondImput = undefined;
+		secondInput = undefined;
 	}
 }
 //cleaning function
 function clean() {
-	firstImput = undefined;
-	secondImput = undefined;
+	firstInput = undefined;
+	secondInput = undefined;
 	result = undefined;
-	// screen.value= '';
+	screen.value= '';
 	operator = undefined;
 }
-var saveMultipleDigits = '';
-//this function fill up the numbers
-function numberCreation(num) {
-	//save the temporary variable in a permanent number,
-	//that will b used later
-	//i need to save 2 numbers to make the operations work
-	//the first number is called firstImput
-	//the second number is called secondImput
-	saveMultipleDigits += num;
-	//if it's the first number that i am inputting in then save it as first number
-	//otherwise save it as the second imput
-	if (operator !== undefined) {
-		secondImput = parseInt(saveMultipleDigits);
-	} else {
-		firstImput = parseInt(saveMultipleDigits);
-	}
+
+//useing again same result
+function useAnswer(){
+	firstInput = result;
 }
