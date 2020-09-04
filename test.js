@@ -38,15 +38,16 @@ function evaluation() {
 //operation function
 //o is for the operator
 function operatorCreation(o) {
-	//if the user clicked on a number
-	if (firstInput !== undefined) {
+	//if user click on answer then
+	  if(o === "answer") {
+		return useAnswer();
+	} //if the user clicked on a number
+	  else if (firstInput !== undefined) {
 		if (o === "CL") {
 			return clean();
 		} else if (o === "=") {
 			saveMultipleDigits = '';
 			return operations(firstInput, operator, secondInput);
-		} else if(o === "answer") {
-			return useAnswer();
 		} else {
 			operator = o;
 			saveMultipleDigits = '';
