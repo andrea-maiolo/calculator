@@ -1,5 +1,5 @@
 //TEST TEST TEST TEST TEST
-
+//try to understand better .toFixed and other stuff
 let temporary = '';
 //this will be the first number n
 let firstInput;
@@ -25,14 +25,14 @@ function populate(e) {
 	return evaluation(temporary);
 }
 //this function evaluates the temporary variable
-function evaluation() {
-	if (isNaN(parseInt(temporary))) {
+function evaluation(temp) {
+	if (isNaN(parseInt(temp))) {
 		//if temporary is not a number then is an operator
 		//so call a function for that 
-		return operatorCreation(temporary);
+		return operatorCreation(temp);
 	} else {
 		//if temporary is a number then
-		return numberCreation(temporary);
+		return numberCreation(temp);
 	}
 }
 //operation function
@@ -41,11 +41,11 @@ function operatorCreation(o) {
 	//if user click on answer then
 	  if(o === "answer") {
 		return useAnswer();
+	  }else if (o === "CL") {
+			return clean();
 	} //if the user clicked on a number
 	  else if (firstInput !== undefined) {
-		if (o === "CL") {
-			return clean();
-		} else if (o === "=") {
+		if (o === "=") {
 			saveMultipleDigits = '';
 			return operations(firstInput, operator, secondInput);
 		} else {
@@ -61,22 +61,20 @@ function operatorCreation(o) {
 var saveMultipleDigits = '';
 //this function fill up the numbers
 function numberCreation(num) {
-	//save the temporary variable in a permanent number,
-	//that will b used later
-	//i need to save 2 numbers to make the operations work
-	//the first number is called firstInput
-	//the second number is called secondInput
+	//save the temporary variable in a permanent variable,
 	saveMultipleDigits += num;
-	//if it's the first number that i am inputting in then save it as first number
-	//otherwise save it as the second imput
-	if (operator !== undefined) {
-		secondInput = parseInt(saveMultipleDigits);
-		screen.value= secondInput ;
+	//check for the length of variable
+	if( saveMultipleDigits.length > 10){
+		return
 	} else {
-		firstInput = parseInt(saveMultipleDigits);
-		screen.value= firstInput ;
-	}
-}
+		if (operator !== undefined) {
+			secondInput = parseInt(saveMultipleDigits);
+			screenCreation(secondInput);
+		} else {
+			firstInput = parseInt(saveMultipleDigits);
+			screenCreation(firstInput);
+		}
+}}
 
 function operations(a, o, c) {
 	if (o === '+') {
@@ -92,59 +90,71 @@ function operations(a, o, c) {
 
 function add(n, m) {
 	result = n + m;
-	console.log(result);
-	screen.value= result; 
-	//after this n shuld be cleaned
-	//and operator too
-	firstInput = undefined;
-	operator = undefined;
-	secondInput = undefined;
+	result = result.toFixed(2)
+	result=Number(result)
+	screenCreation(result);
+	afterResult();
 }
 
 function subtract(n, m) {
 	result = n - m;
-	screen.value = result;
-	console.log(result);
-	//cleanings
-	firstInput = undefined;
-	operator = undefined;
-	secondInput = undefined;
+	result = result.toFixed(2)
+	result=Number(result)
+	screenCreation(result);
+	afterResult();
 }
 
 function multiply(n, m) {
 	result = n * m;
-	screen.value = result;
-	console.log(result);
-	//cleanings
-	firstInput = undefined;
-	operator = undefined;
-	secondInput = undefined;
+	result = result.toFixed(2)
+	result=Number(result)
+	screenCreation(result);
+	afterResult();
 }
 
 function divide(n, m) {
 	if (n == 0 || m == 0) {
 		//work on this
-		return alert("https://www.youtube.com/watch?v=NKmGVE85GUU")
+		return alert("f u!")
 	} else {
 		result = n / m;
-		screen.value = result;
-		console.log(result);
-		//cleanings
-		firstInput = undefined;
-		operator = undefined;
-		secondInput = undefined;
+		result = result.toFixed(2)
+		result=Number(result)
+		screenCreation(result);
+		afterResult();
 	}
 }
+
+//this function reset everything after result is called
+function afterResult(){
+	firstInput = undefined;
+	operator = undefined;
+	secondInput = undefined;
+}
+
 //cleaning function
 function clean() {
 	firstInput = undefined;
 	secondInput = undefined;
 	result = undefined;
-	screen.value= '';
 	operator = undefined;
+	screen.value = '';
 }
 
 //useing again same result
 function useAnswer(){
 	firstInput = result;
+}
+
+
+
+//a screen creation function 
+function screenCreation(v){
+	let stringV = v.toString();
+	//if the value is too long stop at 10 digit
+	if( stringV.length > 10){
+		screen.value = stringV.substr(0,11);
+	} else {
+		screen.value = stringV;
+	}
 }
