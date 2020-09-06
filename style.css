@@ -1,9 +1,13 @@
-#calc{
-    display: grid;
-}
-#screen{
-    display: block;
-}
-.buttons{
-    background-color: rgb(193, 101, 20);
-}
+/* body un form con diversi element
+ dentro, 20 elementi in totale.
+ 10 numerici e 10 operazionali
+ piu il display.
+ */
+ 
+ .buttons{
+    background-color: #c7502b;
+    color: #000000;
+ }
+ body{
+     background-color:#5f91ec; 
+ }
