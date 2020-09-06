@@ -1,5 +1,5 @@
 //TEST TEST TEST TEST TEST
-//try to understand better .toFixed and other stuff
+
 let temporary = '';
 //this will be the first number n
 let firstInput;
@@ -90,24 +90,18 @@ function operations(a, o, c) {
 
 function add(n, m) {
 	result = n + m;
-	result = result.toFixed(2)
-	result=Number(result)
 	screenCreation(result);
 	afterResult();
 }
 
 function subtract(n, m) {
 	result = n - m;
-	result = result.toFixed(2)
-	result=Number(result)
 	screenCreation(result);
 	afterResult();
 }
 
 function multiply(n, m) {
 	result = n * m;
-	result = result.toFixed(2)
-	result=Number(result)
 	screenCreation(result);
 	afterResult();
 }
@@ -118,8 +112,6 @@ function divide(n, m) {
 		return alert("f u!")
 	} else {
 		result = n / m;
-		result = result.toFixed(2)
-		result=Number(result)
 		screenCreation(result);
 		afterResult();
 	}
