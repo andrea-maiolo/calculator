@@ -1,15 +1,15 @@
-.seven, .eight, .nine, .one, .two, .three, .four, .five, .six, .zero{
-  background-color: #f4690c;
+#seven, #eight, #nine, #one, #two, #three, #four, #five, #six, #zero{
+  /*background-color: #ad551b;*/
   color: #000000;
 }
 body{
-  background-color: #02fe67; 
+  /*background-color: #1bad55; */
 } 
-.clear, .divide, .multiply, .subtract, .add, .backspace, .answer, .changeS, .dot, .equal{
-background-color: #0299fe;
+#clear, #divide, #multiply, #subtract, #add, #backspace, #answer, #changeS, #dot, #equal{
+/*background-color: #551bad;*/
+background-color : red;
 color:#000000;
 }
-
 /*example css take what you need*/
 #screen {
   width: 367px;
@@ -40,7 +40,7 @@ color:#000000;
     "seven eight nine subtract"
     "four five six add"
     "one two three answer"
-    "dot zero changeS equal";
+    "zero dot changeS equal";
 }
 /*do i really need this??*/
 #calc {
@@ -58,49 +58,47 @@ html {
   font-family: 'Times New Roman', Times, serif;
 }
 
+.div_screen{ grid-area: screen;}
 
+.div_clear { grid-area: clear; }
 
-.screen{ grid-area: screen;}
+.div_divide { grid-area: divide; }
 
-.clear { grid-area: clear; }
+.div_multiply { grid-area: multiply; }
 
-.divide { grid-area: divide; }
+.div_backspace { grid-area: backspace; }
 
-.multiply { grid-area: multiply; }
+.div_subtract { grid-area: subtract; }
 
-.backspace { grid-area: backspace; }
+.div_add { grid-area: add; }
 
-.subtract { grid-area: subtract; }
+.div_answer { grid-area: answer; }
 
-.add { grid-area: add; }
+.div_equal { grid-area: equal; }
 
-.answer { grid-area: answer; }
+.div_changeS { grid-area: changeS; }
 
-.equal { grid-area: equal; }
+.div_zero { grid-area: zero; }
 
-.changeS { grid-area: changeS; }
+.div_dot { grid-area: dot; }
 
-.zero { grid-area: zero; }
+.div_seven { grid-area: seven; }
 
-.dot { grid-area: dot; }
+.div_four { grid-area: four; }
 
-.seven { grid-area: seven; }
+.div_one { grid-area: one; }
 
-.four { grid-area: four; }
+.div_two { grid-area: two; }
 
-.one { grid-area: one; }
+.div_three { grid-area: three; }
 
-.two { grid-area: two; }
+.div_six { grid-area: six; }
 
-.three { grid-area: three; }
+.div_five { grid-area: five; }
 
-.six { grid-area: six; }
+.div_eight { grid-area: eight; }
 
-.five { grid-area: five; }
-
-.eight { grid-area: eight; }
-
-.nine { grid-area: nine; }
+.div_nine { grid-area: nine; }
 
 .buttons {
   border: none;
