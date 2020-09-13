@@ -109,7 +109,7 @@ function multiply(n, m) {
 function divide(n, m) {
 	if (n == 0 || m == 0) {
 		//work on this
-		return alert("f u!")
+		return alert("yeah no, not happening")
 	} else {
 		result = n / m;
 		screenCreation(result);

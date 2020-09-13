@@ -1,14 +1,10 @@
 #seven, #eight, #nine, #one, #two, #three, #four, #five, #six, #zero{
-  /*background-color: #ad551b;*/
+  background-color: #bdb5b5da;
   color: #000000;
 }
-body{
-  /*background-color: #1bad55; */
-} 
 #clear, #divide, #multiply, #subtract, #add, #backspace, #answer, #changeS, #dot, #equal{
-/*background-color: #551bad;*/
-background-color : red;
-color:#000000;
+  background-color :#e7650eaf;
+  color:#000000;
 }
 /*example css take what you need*/
 #screen {
@@ -17,7 +13,7 @@ color:#000000;
   padding: 5px;
   font-size: 4em;
   color:black;
-  background-color: #f7f7f7;
+  background-color: #7e94b4;
   font-weight: initial;
   margin: 5px;
   border-radius: 5px;
@@ -41,21 +37,6 @@ color:#000000;
     "four five six add"
     "one two three answer"
     "zero dot changeS equal";
-}
-/*do i really need this??*/
-#calc {
-  display: grid;
-  min-height: 95vh;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
-  /*background-color:#02fe67;*/
-}
-html {
-  text-align: center;
-  font-family: 'Times New Roman', Times, serif;
 }
 
 .div_screen{ grid-area: screen;}
@@ -109,10 +90,27 @@ html {
   width:100%;
   height:100%;
 }
-/*center svg*/
+#calc {
+  display: grid;
+  min-height: 95vh;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+body{
+  background-color: #dbdbdb; 
+} 
+html {
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/*center svg
 #svg{
   position: relative
 }
+*/
 
 /*
 #zero {
