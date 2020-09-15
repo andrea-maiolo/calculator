@@ -1,11 +1,11 @@
 //to fix:
-
+//zero gives problems.
+//show only few digits in any case.
 //allow only few digits for decimal when dividing
 // EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 // EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
 // EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
 // EXTRA CREDIT: Add keyboard support!
-//think about make the operation buttons of a different color when pressed.
 
 let temporary = '';
 //this will be the first number n
@@ -50,7 +50,7 @@ function operatorCreation(o) {
 		return useAnswer();
 	  }else if (o === "CL") {
 			return clean();
-	} //if the user clicked on a number
+	} //if the user clicked on a number first
 	  else if (firstInput !== undefined) {
 		if (o === "=") {
 			saveMultipleDigits = '';
@@ -71,7 +71,7 @@ function numberCreation(num) {
 	//save the temporary variable in a permanent variable,
 	saveMultipleDigits += num;
 	//check for the length of variable
-	if( saveMultipleDigits.length > 10){
+	if( saveMultipleDigits.length > 8){
 		return
 	} else {
 		if (operator !== undefined) {

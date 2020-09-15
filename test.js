@@ -64,7 +64,7 @@ function numberCreation(num) {
 	//save the temporary variable in a permanent variable,
 	saveMultipleDigits += num;
 	//check for the length of variable
-	if( saveMultipleDigits.length > 10){
+	if( saveMultipleDigits.length > 8){
 		return
 	} else {
 		if (operator !== undefined) {
