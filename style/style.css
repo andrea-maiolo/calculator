@@ -1,0 +1,155 @@
+#seven,#eight,#nine,#one,#two,#three,#four,#five,#six,#zero {
+    background-color: #bdb5b5da;
+    color: #000000;
+}
+
+#clear,#divide,#multiply,#subtract,#add,#backspace,#answer,#changeS,#dot,#equal {
+    background-color: #e7650eaf;
+    color: #000000;
+}
+
+#screen {
+    width: 367px;
+    height: 73px;
+    padding: 5px;
+    font-size: 4em;
+    color: black;
+    font-family: 'Comfortaa', monospace, sans-serif;
+    background-color: #7e94b4;
+    font-weight: initial;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+#container {
+    border: 5px solid #1525509f;
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(100px, auto) repeat(5, 80px);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 1px 1px;
+    grid-template-areas:
+        "screen screen screen screen"
+        "clear divide multiply backspace"
+        "seven eight nine subtract"
+        "four five six add"
+        "one two three answer"
+        "zero dot changeS equal";
+}
+
+.div_screen {
+    grid-area: screen;
+}
+
+.div_clear {
+    grid-area: clear;
+}
+
+.div_divide {
+    grid-area: divide;
+}
+
+.div_multiply {
+    grid-area: multiply;
+}
+
+.div_backspace {
+    grid-area: backspace;
+}
+
+.div_subtract {
+    grid-area: subtract;
+}
+
+.div_add {
+    grid-area: add;
+}
+
+.div_answer {
+    grid-area: answer;
+}
+
+.div_equal {
+    grid-area: equal;
+}
+
+.div_changeS {
+    grid-area: changeS;
+}
+
+.div_zero {
+    grid-area: zero;
+}
+
+.div_dot {
+    grid-area: dot;
+}
+
+.div_seven {
+    grid-area: seven;
+}
+
+.div_four {
+    grid-area: four;
+}
+
+.div_one {
+    grid-area: one;
+}
+
+.div_two {
+    grid-area: two;
+}
+
+.div_three {
+    grid-area: three;
+}
+
+.div_six {
+    grid-area: six;
+}
+
+.div_five {
+    grid-area: five;
+}
+
+.div_eight {
+    grid-area: eight;
+}
+
+.div_nine {
+    grid-area: nine;
+}
+
+.buttons {
+    border: none;
+    font-weight: initial;
+    font-size: 2.65em;
+    font-family: 'Comfortaa', monospace, sans-serif;
+    color: black;
+    width: 100%;
+    height: 100%;
+}
+
+#calc {
+    display: grid;
+    min-height: 95vh;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+body {
+    background-color: #dbdbdb;
+}
+
+html {
+    text-align: center;
+    font-family: 'Comfortaa', monospace, sans-serif;
+}

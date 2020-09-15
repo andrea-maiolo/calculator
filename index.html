@@ -3,84 +3,81 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Calculator</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <link rel="stylesheet" href="prova.css">
-	<!-- <link rel="stylesheet" href="reset.css"> -->
+    <title>Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+	<link rel="stylesheet" href="style/reset.css">
 </head>
-
 <body>
-	<div id='calc'>
-		<form>
+	<div id='calc'> 
             <div id='container' class="grid-container"> 
-			<div class="screen">
+			<div class="div_screen">
 				<input id="screen" type='text' name='display' disabled>
 			</div>
-                <div class="clear">
-                <button class="buttons" value="CL" type='button' id="clear">CL</button>
+                <div class="div_clear">
+                <button id="clear" class="buttons" value="CL" type='button'>CL
                 </div>
-                <div class="divide">
-                <button class="buttons" value="/" type='button' id="divide">/</button>
+                <div class="div_divide">
+                <button class="buttons" id="divide" value="/" type='button'>/</button>
                 </div>
-                <div class="multiply">
-                <button class="buttons" value="*" type='button' id="multiply">*</button>
+                <div class="div_multiply">
+                <button class="buttons" id="multiply" value="*" type='button'>*</button>
                 </div>
-                <div class="backspace">
-                <button class="buttons" value="backspace" type='button' id='backspace'>
-                    <img src="my-icons-collection/svg/003-backspace-1.svg">
+                <div class="div_backspace">
+                <button class="buttons" id="backspace" value="backspace" type='button'>
+                    <object id="svg" type="image/svg+xml" data="style/backspace.svg" width="70" height="60"></object> 
                 </button>
                 </div>
-                <div class="seven">
-                <button class="buttons" value='7' type='button' id="seven">7</button>
+                <div class="div_seven">
+                <button class="buttons" id="seven" value='7' type='button'>7</button>
                 </div>
-                <div class="eight">
-                <button class="buttons" value="8" type='button' id="eight">8</button>
+                <div class="div_eight">
+                <button class="buttons" id="eight" value="8" type='button'>8</button>
                 </div>
-                <div class="nine">
-                <button class="buttons" value="9" type='button' id="nine">9</button>
+                <div class="div_nine">
+                <button class="buttons" id="nine" value="9" type='button'>9</button>
                 </div>
-                <div class="subtract">
-				<button class="buttons" value="-" type='button' id="subtract">-</button>
+                <div class="div_subtract">
+				<button class="buttons" id="subtract" value="subtract" type='button'>-</button>
                 </div>
-                <div class="four">
-                <button class="buttons" value="4" type='button' id="four">4</button>
+                <div class="div_four">
+                <button class="buttons"  id ="four" value="4" type='button'>4</button>
                 </div>
-                <div class="five">
-                <button class="buttons" value="5" type='button' id="five">5</button>
+                <div class="div_five">
+                <button class="buttons" id="five" value="5" type='button'>5</button>
                 </div>
-                <div class="six">
-                <button class="buttons" value="6" type='button' id="six">6</button>
+                <div class="div_six">
+                <button class="buttons" id="six" value="6" type='button'>6</button>
                 </div>
-                <div class="add">
-                <button class="buttons" value="+" type='button' id="add">+</button>
+                <div class="div_add">
+                <button class="buttons" id="add" value="+" type='button'>+</button>
                 </div>
-                <div class="one">
-                <button class="buttons" value="1" type='button' id="one">1</button>
+                <div class="div_one">
+                <button class="buttons" id="one" value="1" type='button'>1</button>
                 </div>
-                <div class="two">
-                <button class="buttons" value="2" type='button' id="two">2</button>
+                <div class="div_two">
+                <button class="buttons" id="two" value="2" type='button'>2</button>
                 </div>
-                <div class="three">
-                <button class="buttons" value="3" type='button' id="three">3</button>
+                <div class="div_three">
+                <button class="buttons" id="three" value="3" type='button'>3</button>
                 </div>
-                <div class="answer">
-                <button class="buttons" value="answer" type='button' id="answer">ANS</button>
-			    </div>
-			    <div class="dot">
-                <button class="buttons" value='dot' type='button' id='dot'>.</button>
+                <div class="div_answer">
+                <button class="buttons" id="answer" value="answer" type='button'>ANS</button>
                 </div>
-                <div class="zero">
-                <button class="buttons" value="0" type='button' id="zero">0</button>
+                <div class="div_zero">
+                    <button class="buttons" id="zero" value="0" type='button'>0</button>
                 </div>
-                <div class="changeS">
-                <button class='buttons' value='changeS' type='button' id="changeS">+/-</button>
+			    <div class="div_dot">
+                <button class="buttons" id="dot" value='dot' type='button'>.</button>
                 </div>
-                <div class="equal">
-				<button class="buttons" value="=" type='button' id="equal">=</button>
+                <div class="div_changeS">
+                <button class='buttons' id="changeS" value='changeS' type='button'>+/-</button>
+                </div>
+                <div class="div_equal">
+				<button class="buttons" id="equal" value="=" type='button'>=</button>
                 </div>
         </div>
-		</form>
-	</div>
+    </div>
 </body>
 <!-- <script src="main.js"> -->
 <script src="test.js">
