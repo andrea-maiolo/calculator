@@ -1,11 +1,6 @@
-//to fix:
-// EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, 
-//but they can’t type them in yet. 
-//Add a . button and let users input decimals!
-// Make sure you don’t let them type more than one though: 12.3.56.5.
-//It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
-// EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
-// EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
+//to fix: 
+//il segno di result viene messo alla fine quando negativo
+//work on svg
 // EXTRA CREDIT: Add keyboard support!
 
 let temporary = '';
@@ -46,17 +41,22 @@ function evaluation(temp) {
 //operation function
 //o is for the operator
 function operatorCreation(o) {
+	if( o === "."){
+		numberCreation(o)
+	}
 	//if user click on answer then
-	  if(o === "answer") {
+	 else if(o === "answer") {
 		return useAnswer();
 	  }else if (o === "CL") {
 			return clean();
-	} //if the user clicked on a number first
+	}//if the user clicked on a number first
 	  else if (firstInput !== undefined) {
 		if (o === "=") {
 			saveMultipleDigits = '';
 			return operations(firstInput, operator, secondInput);
-		} else {
+		}else if (o === "backspace"){
+			return backSpace();
+		}else {
 			operator = o;
 			saveMultipleDigits = '';
 		}
@@ -76,10 +76,10 @@ function numberCreation(num) {
 		return
 	} else {
 		if (operator !== undefined) {
-			secondInput = parseInt(saveMultipleDigits);
+			secondInput = parseFloat(saveMultipleDigits);
 			screenCreation(secondInput);
 		} else {
-			firstInput = parseInt(saveMultipleDigits);
+			firstInput = parseFloat(saveMultipleDigits);
 			screenCreation(firstInput);
 		}
 }}
@@ -147,6 +147,12 @@ function useAnswer(){
 }
 
 
+mySvg = document.getElementById("svg");
+mySvg.addEventListener('click', backSpace)
+function backSpace(){
+	saveMultipleDigits = saveMultipleDigits.substr(0, saveMultipleDigits.length-1)
+	screen.value = screen.value.substr(0,screen.value.length-1)
+} 
 
 //screen creation function 
 function screenCreation(v){
@@ -162,3 +168,24 @@ function screenCreation(v){
 		}
 	}
 }
+
+
+// use data-key in div or button so you can use this as id or class
+//   function removeTransition(e) {
+//     if (e.propertyName !== 'transform') return;
+//     e.target.classList.remove('playing');
+//   }
+
+//   function playSound(e) {
+//     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+//     const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+//     if (!audio) return;
+
+//     key.classList.add('playing');
+//     audio.currentTime = 0;
+//     audio.play();
+//   }
+
+//   const keys = Array.from(document.querySelectorAll('.key'));
+//   keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+//   window.addEventListener('keydown', playSound);

@@ -1,4 +1,12 @@
-//TEST TEST TEST TEST TEST
+//to fix:
+// EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, 
+//but they can’t type them in yet. 
+//Add a . button and let users input decimals!
+// Make sure you don’t let them type more than one though: 12.3.56.5.
+//It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
+// EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
+// EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
+// EXTRA CREDIT: Add keyboard support!
 
 let temporary = '';
 //this will be the first number n
@@ -24,17 +32,46 @@ function populate(e) {
 	temporary = this.value;
 	return evaluation(temporary);
 }
-//this function evaluates the temporary variable
-function evaluation(temp) {
-	if (isNaN(parseInt(temp))) {
-		//if temporary is not a number then is an operator
-		//so call a function for that 
-		return operatorCreation(temp);
-	} else {
-		//if temporary is a number then
-		return numberCreation(temp);
-	}
+function evaluation(temp){
+	switch(temp) {
+		case temp === "1":
+		case temp === "2":
+		case temp === "3":
+		case temp === "4":
+		case temp === "5":
+		case temp === "6":
+		case temp === "7":
+		case temp === "8":
+		case temp === "9":
+		case temp === "0":
+			numberCreation(temp);
+		  break;
+		case temp === "+":
+		case temp === "-":
+		case temp === "*":
+		case temp === "/":
+			operator = temp;
+			saveMultipleDigits ='';
+		  break;
+		case temp === "=":
+			saveMultipleDigits = '';
+			operations(firstInput, operator, secondInput);
+		  break;
+		case temp === "CL":
+			clean();
+		  break;
+		case temp === "answer":
+			useAnswer();
+		  break;
+		// case temp === "/":
+		// 	operator = temp;
+		// 	saveMultipleDigits ='';
+		//   break;
+	  }
 }
+
+
+
 //operation function
 //o is for the operator
 function operatorCreation(o) {
@@ -43,11 +80,13 @@ function operatorCreation(o) {
 		return useAnswer();
 	  }else if (o === "CL") {
 			return clean();
-	} //if the user clicked on a number
+	  }//if the user clicked on a number first
 	  else if (firstInput !== undefined) {
 		if (o === "=") {
 			saveMultipleDigits = '';
 			return operations(firstInput, operator, secondInput);
+		}else if( o === "."){
+			numberCreation(o)
 		} else {
 			operator = o;
 			saveMultipleDigits = '';
@@ -64,7 +103,7 @@ function numberCreation(num) {
 	//save the temporary variable in a permanent variable,
 	saveMultipleDigits += num;
 	//check for the length of variable
-	if( saveMultipleDigits.length > 8){
+	if( saveMultipleDigits.length > 9){
 		return
 	} else {
 		if (operator !== undefined) {
@@ -109,7 +148,7 @@ function multiply(n, m) {
 function divide(n, m) {
 	if (n == 0 || m == 0) {
 		//work on this
-		return alert("yeah no, not happening")
+		return alert("error")
 	} else {
 		result = n / m;
 		screenCreation(result);
@@ -138,11 +177,19 @@ function useAnswer(){
 	firstInput = result;
 }
 
+
+
+//screen creation function 
 function screenCreation(v){
-	let vString = v.toString();
-	if (vString.length > 10){
-		vString = Math.round(v)
-	}else{
-		screen.value = vString;
+	if (v==firstInput || v==secondInput){
+		screen.value = v;
+	}else {
+		if (v % 1 == 0){
+			let vString = v.toString();
+			screen.value = vString.substr(0,9);
+		}else{
+			vString = v.toFixed(2);
+			screen.value = vString;
+		}
 	}
 }
