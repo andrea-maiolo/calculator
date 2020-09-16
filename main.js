@@ -1,8 +1,9 @@
 //to fix:
-//zero gives problems.
-//show only few digits in any case.
-//allow only few digits for decimal when dividing
-// EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
+// EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, 
+//but they can’t type them in yet. 
+//Add a . button and let users input decimals!
+// Make sure you don’t let them type more than one though: 12.3.56.5.
+//It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 // EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
 // EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
 // EXTRA CREDIT: Add keyboard support!
@@ -71,7 +72,7 @@ function numberCreation(num) {
 	//save the temporary variable in a permanent variable,
 	saveMultipleDigits += num;
 	//check for the length of variable
-	if( saveMultipleDigits.length > 8){
+	if( saveMultipleDigits.length > 9){
 		return
 	} else {
 		if (operator !== undefined) {
@@ -116,7 +117,7 @@ function multiply(n, m) {
 function divide(n, m) {
 	if (n == 0 || m == 0) {
 		//work on this
-		return alert("f u!")
+		return alert("error")
 	} else {
 		result = n / m;
 		screenCreation(result);
@@ -147,13 +148,17 @@ function useAnswer(){
 
 
 
-//a screen creation function 
+//screen creation function 
 function screenCreation(v){
-	let stringV = v.toString();
-	//if the value is too long stop at 10 digit
-	if( stringV.length > 10){
-		screen.value = stringV.substr(0,11);
-	} else {
-		screen.value = stringV;
+	if (v==firstInput || v==secondInput){
+		screen.value = v;
+	}else {
+		if (v % 1 == 0){
+			let vString = v.toString();
+			screen.value = vString.substr(0,9);
+		}else{
+			vString = v.toFixed(2);
+			screen.value = vString;
+		}
 	}
 }

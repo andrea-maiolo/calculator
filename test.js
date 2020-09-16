@@ -138,16 +138,11 @@ function useAnswer(){
 	firstInput = result;
 }
 
-
-
-//a screen creation function 
 function screenCreation(v){
-	let stringV = v.toString();
-	//if the value is too long stop at 10 digit
-	if( stringV.length > 10){
-		screen.value = stringV.substr(0,11);
-	} else {
-		screen.value = stringV;
+	let vString = v.toString();
+	if (vString.length > 10){
+		vString = Math.round(v)
+	}else{
+		screen.value = vString;
 	}
 }
-
