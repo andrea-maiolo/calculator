@@ -1,7 +1,8 @@
 //to fix: 
-//il segno di result viene messo alla fine quando negativo
+
 //work on svg
 // EXTRA CREDIT: Add keyboard support!
+
 
 let temporary = '';
 //this will be the first number n
@@ -41,11 +42,8 @@ function evaluation(temp) {
 //operation function
 //o is for the operator
 function operatorCreation(o) {
-	if( o === "."){
-		numberCreation(o)
-	}
 	//if user click on answer then
-	 else if(o === "answer") {
+	if(o === "answer") {
 		return useAnswer();
 	  }else if (o === "CL") {
 			return clean();
@@ -56,6 +54,10 @@ function operatorCreation(o) {
 			return operations(firstInput, operator, secondInput);
 		}else if (o === "backspace"){
 			return backSpace();
+		} else if( o === "."){
+				numberCreation(o)
+		} else if( o === "changeS"){
+				return changeSign();
 		}else {
 			operator = o;
 			saveMultipleDigits = '';
@@ -117,7 +119,7 @@ function multiply(n, m) {
 function divide(n, m) {
 	if (n == 0 || m == 0) {
 		//work on this
-		return alert("error")
+		return alert("task failed successfully")
 	} else {
 		result = n / m;
 		screenCreation(result);
@@ -139,6 +141,7 @@ function clean() {
 	result = undefined;
 	operator = undefined;
 	screen.value = '';
+	saveMultipleDigits=''
 }
 
 //useing again same result
@@ -146,29 +149,55 @@ function useAnswer(){
 	firstInput = result;
 }
 
+//changeSign function
+function changeSign(){
+	if(screen.value === 0){
+		return
+	}else{
+		let number = parseInt(screen.value);
+		if (number === firstInput){
+			number = -number;
+			firstInput = number;
+		}else if (number === secondInput){
+			number = -number;
+			secondInput = number;
+		}
+		screenCreation(number);
+	}
+}
 
-mySvg = document.getElementById("svg");
-mySvg.addEventListener('click', backSpace)
+// mySvg = document.getElementById("svg");
+// mySvg.addEventListener('click', backSpace)
+
+//this works but just  for the button
 function backSpace(){
 	saveMultipleDigits = saveMultipleDigits.substr(0, saveMultipleDigits.length-1)
 	screen.value = screen.value.substr(0,screen.value.length-1)
 } 
 
 //screen creation function 
-function screenCreation(v){
-	if (v==firstInput || v==secondInput){
-		screen.value = v;
+function screenCreation(val) {
+	if (val==firstInput || val==secondInput){
+		screen.value = val;
 	}else {
-		if (v % 1 == 0){
-			let vString = v.toString();
-			screen.value = vString.substr(0,9);
-		}else{
-			vString = v.toFixed(2);
+		if (val % 1 == 0){
+			let vString = val.toString();
+			var length = Math.log(val) * Math.LOG10E + 1 | 0;
+			length-=9;
+			if(length <= 0){
+				screen.value = val;
+			}else {
+			screen.value = vString.substr(0,9)+"e+"+length;
+		}}else{
+			vString = val.toFixed(2);
 			screen.value = vString;
 		}
 	}
 }
 
+
+//capisci prima che design vuoi fare, se voui modificare i bottoi o meno eccc.
+//
 
 // use data-key in div or button so you can use this as id or class
 //   function removeTransition(e) {

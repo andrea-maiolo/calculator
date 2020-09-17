@@ -32,44 +32,45 @@ function populate(e) {
 	temporary = this.value;
 	return evaluation(temporary);
 }
-function evaluation(temp){
-	switch(temp) {
-		case temp === "1":
-		case temp === "2":
-		case temp === "3":
-		case temp === "4":
-		case temp === "5":
-		case temp === "6":
-		case temp === "7":
-		case temp === "8":
-		case temp === "9":
-		case temp === "0":
-			numberCreation(temp);
-		  break;
-		case temp === "+":
-		case temp === "-":
-		case temp === "*":
-		case temp === "/":
-			operator = temp;
-			saveMultipleDigits ='';
-		  break;
-		case temp === "=":
-			saveMultipleDigits = '';
-			operations(firstInput, operator, secondInput);
-		  break;
-		case temp === "CL":
-			clean();
-		  break;
-		case temp === "answer":
-			useAnswer();
-		  break;
-		// case temp === "/":
-		// 	operator = temp;
-		// 	saveMultipleDigits ='';
-		//   break;
-	  }
+//this function evaluates the temporary variable
+function evaluation(temp) {
+	if (isNaN(parseInt(temp))) {
+		//if temporary is not a number then is an operator
+		//so call a function for that 
+		return operatorCreation(temp);
+	} else {
+		//if temporary is a number then
+		return numberCreation(temp);
+	}
 }
-
+//operation function
+//o is for the operator
+function operatorCreation(o) {
+	//if user click on answer then
+	if(o === "answer") {
+		return useAnswer();
+	  }else if (o === "CL") {
+			return clean();
+	}//if the user clicked on a number first
+	  else if (firstInput !== undefined) {
+		if (o === "=") {
+			saveMultipleDigits = '';
+			return operations(firstInput, operator, secondInput);
+		}else if (o === "backspace"){
+			return backSpace();
+		} else if( o === "."){
+				numberCreation(o)
+		} else if( o === "changeS"){
+				return changeSign();
+		}else {
+			operator = o;
+			saveMultipleDigits = '';
+		}
+		//if the first thing that the user click is an operator don't do anything
+	} else {
+		return
+	}
+}
 
 
 //operation function
@@ -176,20 +177,45 @@ function clean() {
 function useAnswer(){
 	firstInput = result;
 }
+//changeSign function
+function changeSign(){
+	if(screen.value === 0){
+		return
+	}else{
+		let number = parseInt(screen.value);
+		if (number === firstInput){
+			number = -number;
+			firstInput = number;
+		}else if (number === secondInput){
+			number = -number;
+			secondInput = number;
+		}
+		screenCreation(number);
+	}
+}
 
 
 
 //screen creation function 
-function screenCreation(v){
-	if (v==firstInput || v==secondInput){
-		screen.value = v;
+function screenCreation(val) {
+	if(val > 0 ){
+	if (val==firstInput || val==secondInput){
+		screen.value = val;
 	}else {
-		if (v % 1 == 0){
-			let vString = v.toString();
-			screen.value = vString.substr(0,9);
-		}else{
-			vString = v.toFixed(2);
+		if (val % 1 == 0){
+			let vString = val.toString();
+			var length = Math.log(val) * Math.LOG10E + 1 | 0;
+			length-=9;
+			if(length <= 0){
+				screen.value = val;
+			}else {
+			screen.value = vString.substr(0,9)+"e+"+length;
+		}}else{
+			vString = val.toFixed(2);
 			screen.value = vString;
 		}
+	}
+}else{
+return "ciao"
 	}
 }
