@@ -195,11 +195,13 @@ function screenCreation(val) {
 	}
 }
 
+window.addEventListener('keydown', somOtherFunction);
+function somOtherFunction(e){
+const keys = document.querySelector('button[data-key ="${e.keyCode}"]');
+console.log(e)
 
-//capisci prima che design vuoi fare, se voui modificare i bottoi o meno eccc.
-//
+}
 
-// use data-key in div or button so you can use this as id or class
 //   function removeTransition(e) {
 //     if (e.propertyName !== 'transform') return;
 //     e.target.classList.remove('playing');
