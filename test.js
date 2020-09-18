@@ -1,12 +1,8 @@
-//to fix:
-// EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, 
-//but they can’t type them in yet. 
-//Add a . button and let users input decimals!
-// Make sure you don’t let them type more than one though: 12.3.56.5.
-//It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
-// EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
-// EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
+//to fix: 
+
+//work on svg
 // EXTRA CREDIT: Add keyboard support!
+
 
 let temporary = '';
 //this will be the first number n
@@ -72,32 +68,6 @@ function operatorCreation(o) {
 	}
 }
 
-
-//operation function
-//o is for the operator
-function operatorCreation(o) {
-	//if user click on answer then
-	  if(o === "answer") {
-		return useAnswer();
-	  }else if (o === "CL") {
-			return clean();
-	  }//if the user clicked on a number first
-	  else if (firstInput !== undefined) {
-		if (o === "=") {
-			saveMultipleDigits = '';
-			return operations(firstInput, operator, secondInput);
-		}else if( o === "."){
-			numberCreation(o)
-		} else {
-			operator = o;
-			saveMultipleDigits = '';
-		}
-		//if the first thing that the user click is an operator don't do anything
-	} else {
-		return
-	}
-}
-
 var saveMultipleDigits = '';
 //this function fill up the numbers
 function numberCreation(num) {
@@ -108,10 +78,10 @@ function numberCreation(num) {
 		return
 	} else {
 		if (operator !== undefined) {
-			secondInput = parseInt(saveMultipleDigits);
+			secondInput = parseFloat(saveMultipleDigits);
 			screenCreation(secondInput);
 		} else {
-			firstInput = parseInt(saveMultipleDigits);
+			firstInput = parseFloat(saveMultipleDigits);
 			screenCreation(firstInput);
 		}
 }}
@@ -149,7 +119,7 @@ function multiply(n, m) {
 function divide(n, m) {
 	if (n == 0 || m == 0) {
 		//work on this
-		return alert("error")
+		return alert("task failed successfully")
 	} else {
 		result = n / m;
 		screenCreation(result);
@@ -171,12 +141,14 @@ function clean() {
 	result = undefined;
 	operator = undefined;
 	screen.value = '';
+	saveMultipleDigits=''
 }
 
 //useing again same result
 function useAnswer(){
 	firstInput = result;
 }
+
 //changeSign function
 function changeSign(){
 	if(screen.value === 0){
@@ -194,11 +166,17 @@ function changeSign(){
 	}
 }
 
+// mySvg = document.getElementById("svg");
+// mySvg.addEventListener('click', backSpace)
 
+//this works but just  for the button
+function backSpace(){
+	saveMultipleDigits = saveMultipleDigits.substr(0, saveMultipleDigits.length-1)
+	screen.value = screen.value.substr(0,screen.value.length-1)
+} 
 
 //screen creation function 
 function screenCreation(val) {
-	if(val > 0 ){
 	if (val==firstInput || val==secondInput){
 		screen.value = val;
 	}else {
@@ -215,7 +193,35 @@ function screenCreation(val) {
 			screen.value = vString;
 		}
 	}
-}else{
-return "ciao"
-	}
 }
+
+window.addEventListener('keydown', (e)=>{
+	const keys = document.querySelectorAll('.buttons[data-key]');
+if( e.key >= "0" && e.key <= "9"){
+	evaluation(e.key);
+}else {
+	switch(e.key) {
+		case e.key = "Enter":
+		  evaluation("=");
+		  break;
+		case e.key = "+":
+			evaluation("+");
+		  break;
+		  case e.key = "-":
+		  evaluation("-");
+		  break;
+		  case e.key = "*":
+		  evaluation("*");
+		  break;
+		  case e.key = "/":
+		  evaluation("/");
+		  break;
+		  case e.key = "Backspace":
+		  evaluation("backspace");
+		  break;
+		  //should i keep this??
+		default:
+		  alert("It looks like you have not pressed any valid key, please try again")
+	  }
+}
+});

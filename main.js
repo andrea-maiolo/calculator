@@ -166,8 +166,6 @@ function changeSign(){
 	}
 }
 
-// mySvg = document.getElementById("svg");
-// mySvg.addEventListener('click', backSpace)
 
 //this works but just  for the button
 function backSpace(){
@@ -195,28 +193,36 @@ function screenCreation(val) {
 	}
 }
 
-window.addEventListener('keydown', somOtherFunction);
-function somOtherFunction(e){
-const keys = document.querySelector('button[data-key ="${e.keyCode}"]');
-console.log(e)
-
+window.addEventListener('keydown', (e)=>{
+	const keys = document.querySelectorAll('.buttons[data-key]');
+if( e.key >= "0" && e.key <= "9"){
+	evaluation(e.key);
+}else {
+	switch(e.key) {
+		case e.key = "Enter":
+		  evaluation("=");
+		  break;
+		case e.key = "+":
+			evaluation("+");
+		  break;
+		  case e.key = "-":
+		  evaluation("-");
+		  break;
+		  case e.key = "*":
+		  evaluation("*");
+		  break;
+		  case e.key = "/":
+		  evaluation("/");
+		  break;
+		  case e.key = "Backspace":
+		  evaluation("backspace");
+		  break;
+		  case e.key = ".":
+		  evaluation(".");
+		  break;
+		  default:
+		  console.log(e.key);
+		break;		  
+	  }
 }
-
-//   function removeTransition(e) {
-//     if (e.propertyName !== 'transform') return;
-//     e.target.classList.remove('playing');
-//   }
-
-//   function playSound(e) {
-//     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-//     const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-//     if (!audio) return;
-
-//     key.classList.add('playing');
-//     audio.currentTime = 0;
-//     audio.play();
-//   }
-
-//   const keys = Array.from(document.querySelectorAll('.key'));
-//   keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-//   window.addEventListener('keydown', playSound);
+});

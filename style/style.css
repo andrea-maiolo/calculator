@@ -144,9 +144,7 @@ button:hover{
 #calc {
     display: grid;
     min-height: 95vh;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+    place-items: center;
     overflow: hidden;
 }
 
