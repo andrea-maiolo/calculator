@@ -21,17 +21,11 @@
     border-radius: 5px;
 }
 
-#container {
+#grid-container{
     border: 5px solid #1525509f;
     display: grid;
     grid-template-columns: repeat(4, 100px);
-    grid-template-rows: minmax(100px, auto) repeat(5, 80px);
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: minmax(100px, auto) repeat(5, 80px); 
     gap: 1px 1px;
     grid-template-areas:
         "screen screen screen screen"
@@ -42,96 +36,53 @@
         "zero dot changeS equal";
 }
 
-.div_screen {
-    grid-area: screen;
-}
+.div_screen {grid-area: screen;}
 
-.div_clear {
-    grid-area: clear;
-}
+.div_clear {grid-area: clear;}
 
-.div_divide {
-    grid-area: divide;
-}
+.div_divide {grid-area: divide;}
 
-.div_multiply {
-    grid-area: multiply;
-}
+.div_multiply {grid-area: multiply;}
 
-.div_backspace {
-    grid-area: backspace;
-}
+.div_backspace {grid-area: backspace;}
 
-.div_subtract {
-    grid-area: subtract;
-}
+.div_subtract {grid-area: subtract;}
 
-.div_add {
-    grid-area: add;
-}
+.div_add {grid-area: add;}
 
-.div_answer {
-    grid-area: answer;
-}
+.div_answer {grid-area: answer;}
 
-.div_equal {
-    grid-area: equal;
-}
+.div_equal {grid-area: equal;}
 
-.div_changeS {
-    grid-area: changeS;
-}
+.div_changeS {grid-area: changeS;}
 
-.div_zero {
-    grid-area: zero;
-}
+.div_zero {grid-area: zero;}
 
-.div_dot {
-    grid-area: dot;
-}
+.div_dot {grid-area: dot;}
 
-.div_seven {
-    grid-area: seven;
-}
+.div_seven {grid-area: seven;}
 
-.div_four {
-    grid-area: four;
-}
+.div_four {grid-area: four;}
 
-.div_one {
-    grid-area: one;
-}
+.div_one {grid-area: one;}
 
-.div_two {
-    grid-area: two;
-}
+.div_two {grid-area: two;}
 
-.div_three {
-    grid-area: three;
-}
+.div_three {grid-area: three;}
 
-.div_six {
-    grid-area: six;
-}
+.div_six {grid-area: six;}
 
-.div_five {
-    grid-area: five;
-}
+.div_five {grid-area: five;}
 
-.div_eight {
-    grid-area: eight;
-}
+.div_eight {grid-area: eight;}
 
-.div_nine {
-    grid-area: nine;
-}
+.div_nine {grid-area: nine;}
 
 .buttons {
     border:none;
     font-weight: initial;
     font-size: 2.65em;
     font-family: 'Comfortaa', monospace, sans-serif;
-    color: black;
     width: 100%;
     height: 100%;
     border-radius:7%;
@@ -148,6 +99,10 @@ button:hover{
     overflow: hidden;
 }
 
+#foot{
+    font-size: small;
+    text-align: right;
+}
 body {
     background-color: #dbdbdb;
 }

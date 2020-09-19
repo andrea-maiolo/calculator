@@ -1,228 +1,202 @@
-//to fix: 
-
-//work on svg
-// EXTRA CREDIT: Add keyboard support!
-
-
+//here are some variables that I am going to use later.
+//temporary is to evaluate one button at the time
+//firstInput and secondInout are respectively the first and second number of the operation
+//then we have the operator and the result, and finaly the screen
 let temporary = '';
-//this will be the first number n
 let firstInput;
-//this is the operator
 let operator;
-//this is m the second numver
 let secondInput;
-//this is the final result
 let result;
-//this is for the screen
 const screen = document.querySelector('#screen');
-//this create a function when nuttons are clikced
-const nums = document.querySelectorAll('.buttons');
+
+const buttons = document.querySelectorAll('.buttons');
 let calcButton;
-for (var i = 0; i < nums.length; i++) {
-	calcButton = nums[i];
-	calcButton.addEventListener('click', populate)
+for (var i = 0; i < buttons.length; i++) {
+    calcButton = buttons[i];
+    calcButton.addEventListener('click', buttonValue)
 }
 //this function runs when buttons are clicked
-//and store the button value in a temporary variable
-function populate(e) {
-	temporary = this.value;
-	return evaluation(temporary);
+function buttonValue(e) {
+    temporary = this.value;
+    return evaluation(temporary);
 }
-//this function evaluates the temporary variable
-function evaluation(temp) {
-	if (isNaN(parseInt(temp))) {
-		//if temporary is not a number then is an operator
-		//so call a function for that 
-		return operatorCreation(temp);
-	} else {
-		//if temporary is a number then
-		return numberCreation(temp);
-	}
+//this function evaluates the temporary variable to see what to do with it
+function evaluation(userInput) {
+    if (isNaN(parseInt(userInput))) {
+        return operatorCreation(userInput);
+    } else {
+        return numberCreation(userInput);
+    }
 }
-//operation function
-//o is for the operator
+
 function operatorCreation(o) {
-	//if user click on answer then
-	if(o === "answer") {
-		return useAnswer();
-	  }else if (o === "CL") {
-			return clean();
-	}//if the user clicked on a number first
-	  else if (firstInput !== undefined) {
-		if (o === "=") {
-			saveMultipleDigits = '';
-			return operations(firstInput, operator, secondInput);
-		}else if (o === "backspace"){
-			return backSpace();
-		} else if( o === "."){
-				numberCreation(o)
-		} else if( o === "changeS"){
-				return changeSign();
-		}else {
-			operator = o;
-			saveMultipleDigits = '';
-		}
-		//if the first thing that the user click is an operator don't do anything
-	} else {
-		return
-	}
+    if (o === "answer") {
+        return useAnswer();
+    } else if (o === "CL") {
+        return clean();
+    } else if (firstInput !== undefined) {
+        if (o === "=") {
+            saveMultipleDigits = '';
+            return operations(firstInput, operator, secondInput);
+        } else if (o === "backspace") {
+            return backSpace();
+        } else if (o === ".") {
+            numberCreation(o)
+        } else if (o === "changeS") {
+            return changeSign();
+        } else {
+            operator = o;
+            saveMultipleDigits = '';
+        }
+        //if the first thing that the user click is an operator don't do anything
+    } else {
+        return
+    }
+}
+//saveMultipleDigits is created outside the function because I will need to access it later from other functions 
+let saveMultipleDigits = '';
+function numberCreation(num) {
+    saveMultipleDigits += num;
+    if (saveMultipleDigits.length > 9) {
+        return
+    } else {
+        if (operator !== undefined) {
+            secondInput = parseFloat(saveMultipleDigits);
+			screenPopulation(secondInput);
+        } else {
+            firstInput = parseFloat(saveMultipleDigits);
+			screenPopulation(firstInput);
+        }
+    }
 }
 
-var saveMultipleDigits = '';
-//this function fill up the numbers
-function numberCreation(num) {
-	//save the temporary variable in a permanent variable,
-	saveMultipleDigits += num;
-	//check for the length of variable
-	if( saveMultipleDigits.length > 9){
-		return
-	} else {
-		if (operator !== undefined) {
-			secondInput = parseFloat(saveMultipleDigits);
-			screenCreation(secondInput);
-		} else {
-			firstInput = parseFloat(saveMultipleDigits);
-			screenCreation(firstInput);
-		}
-}}
-
-function operations(a, o, c) {
-	if (o === '+') {
-		return add(a, c);
-	} else if (o === "-") {
-		return subtract(a, c);
-	} else if (o === "*") {
-		return multiply(a, c);
-	} else if (o === "/") {
-		return divide(a, c)
-	}
+function operations(firstNumber, o, secondNumber) {
+    if (o === '+') {
+        return add(firstNumber, secondNumber);
+    } else if (o === "-") {
+        return subtract(firstNumber, secondNumber);
+    } else if (o === "*") {
+        return multiply(firstNumber, secondNumber);
+    } else if (o === "/") {
+        return divide(firstNumber, secondNumber)
+    }
 }
 
 function add(n, m) {
 	result = n + m;
-	screenCreation(result);
-	afterResult();
+	screenPopulation(result);
+    afterResult();
 }
 
 function subtract(n, m) {
 	result = n - m;
-	screenCreation(result);
-	afterResult();
+	screenPopulation(result);
+    afterResult();
 }
 
 function multiply(n, m) {
 	result = n * m;
-	screenCreation(result);
-	afterResult();
+	screenPopulation(result);
+    afterResult();
 }
 
 function divide(n, m) {
-	if (n == 0 || m == 0) {
-		//work on this
-		return alert("task failed successfully")
-	} else {
+    if (n == 0 || m == 0) {
+        return alert("task failed successfully")
+    } else {
 		result = n / m;
-		screenCreation(result);
-		afterResult();
-	}
+		screenPopulation(result);
+        afterResult();
+    }
 }
 
-//this function reset everything after result is called
-function afterResult(){
-	firstInput = undefined;
-	operator = undefined;
-	secondInput = undefined;
+//this function clean everything after result is called
+function afterResult() {
+    firstInput = undefined;
+    operator = undefined;
+    secondInput = undefined;
 }
 
-//cleaning function
 function clean() {
-	firstInput = undefined;
-	secondInput = undefined;
-	result = undefined;
-	operator = undefined;
-	screen.value = '';
-	saveMultipleDigits=''
+    firstInput = undefined;
+    secondInput = undefined;
+    result = undefined;
+    operator = undefined;
+    screen.value = '';
+    saveMultipleDigits = ''
 }
 
-//useing again same result
-function useAnswer(){
-	firstInput = result;
+function useAnswer() {
+    firstInput = result;
 }
 
-//changeSign function
-function changeSign(){
-	if(screen.value === 0){
-		return
-	}else{
-		let number = parseInt(screen.value);
-		if (number === firstInput){
-			number = -number;
-			firstInput = number;
-		}else if (number === secondInput){
-			number = -number;
-			secondInput = number;
+function changeSign() {
+    if (screen.value === 0) {
+        return
+    } else {
+        let number = parseInt(screen.value);
+        if (number === firstInput) {
+            number = -number;
+            firstInput = number;
+        } else if (number === secondInput) {
+            number = -number;
+            secondInput = number;
 		}
-		screenCreation(number);
-	}
+		screenPopulation(number);
+    }
 }
 
-
-//this works but just  for the button
-function backSpace(){
-	saveMultipleDigits = saveMultipleDigits.substr(0, saveMultipleDigits.length-1)
-	screen.value = screen.value.substr(0,screen.value.length-1)
-} 
-
-//screen creation function 
-function screenCreation(val) {
-	if (val==firstInput || val==secondInput){
-		screen.value = val;
-	}else {
-		if (val % 1 == 0){
-			let vString = val.toString();
-			var length = Math.log(val) * Math.LOG10E + 1 | 0;
-			length-=9;
-			if(length <= 0){
-				screen.value = val;
-			}else {
-			screen.value = vString.substr(0,9)+"e+"+length;
-		}}else{
-			vString = val.toFixed(2);
-			screen.value = vString;
-		}
-	}
+function backSpace() {
+    saveMultipleDigits = saveMultipleDigits.substr(0, saveMultipleDigits.length - 1)
+    screen.value = screen.value.substr(0, screen.value.length - 1)
 }
 
-window.addEventListener('keydown', (e)=>{
-	const keys = document.querySelectorAll('.buttons[data-key]');
-if( e.key >= "0" && e.key <= "9"){
-	evaluation(e.key);
-}else {
-	switch(e.key) {
-		case e.key = "Enter":
-		  evaluation("=");
-		  break;
-		case e.key = "+":
-			evaluation("+");
-		  break;
-		  case e.key = "-":
-		  evaluation("-");
-		  break;
-		  case e.key = "*":
-		  evaluation("*");
-		  break;
-		  case e.key = "/":
-		  evaluation("/");
-		  break;
-		  case e.key = "Backspace":
-		  evaluation("backspace");
-		  break;
-		  case e.key = ".":
-		  evaluation(".");
-		  break;
-		  default:
-		  console.log(e.key);
-		break;		  
-	  }
+function screenPopulation(val) {
+    if (val == firstInput || val == secondInput) {
+        screen.value = val;
+    } else {
+        if (val % 1 == 0) {
+            let valString = val.toString();
+            let valLength = Math.log(val) * Math.LOG10E + 1 | 0;
+            valLength -= 9;
+            if (valLength <= 0) {
+                screen.value = val;
+            } else {
+                screen.value = valString.substr(0, 9) + "e+" + valLength;
+            }
+        } else {
+            valString = val.toFixed(2);
+            screen.value = valString;
+        }
+    }
 }
+//this is for keyboard support
+window.addEventListener('keydown', (e) => {
+    if (e.key >= "0" && e.key <= "9") {
+        evaluation(e.key);
+    } else {
+        switch (e.key) {
+            case e.key = "Enter":
+                evaluation("=");
+                break;
+            case e.key = "+":
+                evaluation("+");
+                break;
+            case e.key = "-":
+                evaluation("-");
+                break;
+            case e.key = "*":
+                evaluation("*");
+                break;
+            case e.key = "/":
+                evaluation("/");
+                break;
+            case e.key = "Backspace":
+                evaluation("backspace");
+                break;
+            case e.key = ".":
+                evaluation(".");
+				break;
+        }
+    }
 });
