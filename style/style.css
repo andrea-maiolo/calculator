@@ -98,10 +98,19 @@ button:hover{
     place-items: center;
     overflow: hidden;
 }
-
 #foot{
-    font-size: small;
-    text-align: right;
+	padding: 10px;
+	width: 100%;
+	font-size: .7em;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+  }
+.small-text {
+  font-size: 1em;
+  display: block;
+  text-align: center;
+  margin-top: 5px;
 }
 body {
     background-color: #dbdbdb;
